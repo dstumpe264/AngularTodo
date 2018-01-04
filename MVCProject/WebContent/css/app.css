@@ -1,0 +1,26 @@
+body{
+	margin-left: 200px;
+}
+h1{
+  color: blue;
+  margin-left:30px;
+}
+table{
+  border: 2px solid;
+  margin-top: 50px;
+}
+td{
+  border-top: solid 1px;
+}
+thead{
+	background-color: hotpink;
+}
+.detail{
+	width: 35%;
+	border: solid 2px;
+	text-align: center;
+	  margin-top: 50px;
+}
+.add{
+	margin-left:30px;
+}
