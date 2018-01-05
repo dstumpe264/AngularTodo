@@ -14,5 +14,5 @@ public interface TodoDAO {
 	
 	public Todo update(int uid, int tid, String todoJson);
 	
-	public boolean destroy(int uid, int tid);
+	public Boolean destroy(int uid, int tid);
 }

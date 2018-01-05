@@ -13,7 +13,14 @@ angular.module('appModule')
 
 	    vm.todos = [];
 	    
-	    vm.todos = todoService.index();
+	    var index = function(){
+	    		todoService.index()
+	    			.then(function(response){
+	    			vm.todos = response.data;
+	    		})
+	    }
+	    
+	    index();
 
 	    vm.getNumTodos = function(todos){
 	    	var counter = 0;
@@ -26,9 +33,11 @@ angular.module('appModule')
 	    }
 
 	    vm.addTodo = function(todo){
-	    		todoService.create(todo);
-	    		vm.todos = todoService.index();
-	    }
+	    		todoService.create(todo)
+	    		.then(function(response){
+	    			index();
+	    		})
+	    };
 
 
 			vm.detailedView = function(todo){
@@ -41,16 +50,22 @@ angular.module('appModule')
 				
 			}
 			vm.updateTodo = function(todo){
-				todoService.update(todo);
+				todoService.update(todo)
+				.then(function(response){
+					index();
+				})
 				vm.selected = null;
-			}
+			};
+			
 			vm.displayTable = function(){
 				vm.selected = null;
 			}
 			vm.destroy = function(todo){
 				console.log(todo);
-				todoService.destroy(todo);
-				vm.todos = todoService.index();
+				todoService.destroy(todo)
+				.then(function(response){
+					index()
+				})
 				vm.selected = null;
 			}
 

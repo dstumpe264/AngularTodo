@@ -1,0 +1,44 @@
+angular.module('appModule')
+.factory('todoService', function(){
+	var service = {};
+	
+	service.index = function(){
+		return $http({
+			method : 'GET',
+			url : "rest/user/1/todos"
+		})
+	}
+		
+//	service.index = function(){
+//		return todos;
+//	};
+	service.create = function(todo){
+		var copy = angular.copy(todo);
+//		todo.description = '';
+		todo.completed = false;
+		todo.id = generateId();
+		todos.push(todo);
+	};
+    var generateId = function() {
+  	  return todos[todos.length-1].id + 1;
+  	};
+	
+	service.update = function(todo){
+		todos.forEach(function(item, index, array){
+			if (item.id === todo.id) {
+				array.splice(index, 1, todo);
+			}
+		});
+	};
+	
+	service.destroy = function(todo){
+		todos.forEach(function(item, index, array){
+			if (item.id === todo.id) {
+				array.splice(index, 1);
+			}
+		});
+		
+	};
+	
+	return service;
+})
