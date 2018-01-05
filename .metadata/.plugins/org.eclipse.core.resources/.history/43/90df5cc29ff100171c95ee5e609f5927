@@ -1,0 +1,24 @@
+package controllers;
+
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import data.TodoDAO;
+import entities.Todo;
+
+public class TodoController {
+	
+	@Autowired
+	private TodoDAO todoDAO;
+	
+	public Set<Todo> index(int uid, HttpServletRequest req, HttpServletResponse res){
+		
+		
+		return todoDAO.index();
+		
+	}
+}
