@@ -2,6 +2,8 @@ angular.module('appModule')
 .factory('todoService', function($http){
 	var service = {};
 	
+	var url 
+	
 	service.index = function(){
 		return $http({
 			method : 'GET',
