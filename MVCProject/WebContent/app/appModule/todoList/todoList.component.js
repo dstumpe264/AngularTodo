@@ -3,14 +3,13 @@
 angular.module('appModule')
 .component('todoList',{
 	templateUrl : 'app/appModule/todoList/todoList.component.html',
-	controller :	 function(todoService) {
+	controller :	 function(todoService, $filter) {
 		var vm = this;
-		
 
 		vm.selected = null;
 		vm.edit = null;
 		
-
+		
 	    vm.todos = [];
 	    
 	    var index = function(){
@@ -23,13 +22,29 @@ angular.module('appModule')
 	    index();
 
 	    vm.getNumTodos = function(todos){
-	    	var counter = 0;
-	    		todos.forEach(function(todo){
-	    			if (todo.completed === false) {
-						counter++;
-					}
-	    		})
-	    		return counter;
+	    		vm.numIncomplete = $filter('incomplete')(vm.todos, false);
+	    		return vm.numIncomplete.length;
+	    }
+	    
+	    vm.getUrgency = function(){
+	    		var num =  vm.getNumTodos(vm.todos);
+	    		if(num < 5){
+	    			return 'lessFive';
+	    		}
+	    		else if(num >= 5 && num < 10){
+	    			return 'moreFive';
+	    		}
+	    		else {
+	    			return 'moreTen';
+	    		}
+	    			
+	    }
+	    
+	    vm.isComplete = function(todo){
+	    		if (todo.completed) {
+					return 'complete';
+				}
+	    		
 	    }
 
 	    vm.addTodo = function(todo){
@@ -61,7 +76,6 @@ angular.module('appModule')
 				vm.selected = null;
 			}
 			vm.destroy = function(todo){
-				console.log(todo);
 				todoService.destroy(todo)
 				.then(function(response){
 					index()

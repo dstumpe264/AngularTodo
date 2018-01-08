@@ -1,0 +1,48 @@
+<h1>TerDer List</h1>
+<h3 class="numIncomplete">Uncompleted Tasks : {{vm.getNumTodos(vm.todos)}}</h3>
+
+<form ng-hide="vm.selected" class="add">
+  <input type="text" placeholder="New Task" ng-model="todo.task"><br>
+  <input type="text" placeholder="Description" ng-model="todo.description"><br>
+  <input type="submit" ng-click="vm.addTodo(todo); todo = {}" value="Add TerDer">
+</form>
+
+<table ng-show="!vm.selected">
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Mark</th>
+      <th>Completed</th>
+      <th>Delete</th>
+    </tr>
+</thead>
+  <tbody>
+    <tr ng-repeat="todo in vm.todos | incomplete:vm.showComplete">
+      <td class="task" ng-click="vm.detailedView(todo)">{{todo.task}}</td>
+      <td><input type="checkbox" ng-model="todo.completed" ng-change="vm.updateTodo(todo)" > </td>
+      <td>{{todo.completed}}</td>
+      <td><button type="button" ng-click="vm.destroy(todo)">X</button></td>
+    </tr>
+  </tbody>
+</table>
+    Show Complete? <input type="checkbox" ng-model="vm.showComplete"></input>
+
+<div class="detail" ng-model="vm.selected" ng-show="vm.selected">
+<h2>Detailed View</h1>
+<hr>
+  <h2>Task: {{vm.selected.task}}</h2>
+  <h4>Description: {{vm.selected.description}}</h4>
+  <h4>Completed: {{vm.selected.completed}}</h4>
+  <h4>Completed Date: {{vm.selected.completeDate}}</h4>
+  <div ng-model="vm.editTodo" ng-show="vm.editTodo">
+    <form>
+      <input type="text" placeholder="Task" ng-model="vm.editTodo.task"><br>
+      <input type="text" placeholder="Description" ng-model="vm.editTodo.description"><br>
+      <input type="submit" ng-click="vm.updateTodo(vm.editTodo); vm.editTodo = false" value="Save">
+      <input type="submit" ng-click="vm.editTodo = null" value="Cancel">
+    </form>
+  </div>
+  <button type="button" ng-click="vm.setEditTodo()">Edit</button>
+  <button type="button" ng-click="vm.destroy(vm.selected)">Delete</button>
+  <button type="button" ng-click="vm.displayTable(); vm.editTodo = null">Return</button>
+</div>

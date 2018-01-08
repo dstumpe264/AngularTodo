@@ -8,19 +8,59 @@ h1{
 table{
   border: 2px solid;
   margin-top: 50px;
+  border-collapse: collapse;
+  text-align : center;
+  width : 75%
 }
 td{
-  border-top: solid 1px;
+  border: solid 1px;
 }
 thead{
-	background-color: hotpink;
+	background-color: black;
+	color : white;
+}
+th{
+	border : 1px solid white;
 }
 .detail{
 	width: 35%;
 	border: solid 2px;
 	text-align: center;
-	  margin-top: 50px;
+	margin-top: 50px;
 }
 .add{
 	margin-left:30px;
 }
+.task{
+	cursor : pointer;
+}
+.numIncomplete{
+	background : green;
+	color : white;
+	border-radius : 5px;
+	padding : 10px;
+}
+.lessFive{
+	color : black;
+	background : lime;
+}
+.moreFive{
+	color : black;
+	background : yellow;
+}
+.moreTen{
+	color : black;
+	background : red;
+}
+.complete{
+	text-decoration : line-through;
+	
+}
+.delete{
+	background : red;
+}
+
+
+
+
+

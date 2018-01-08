@@ -1,5 +1,5 @@
 angular.module('appModule')
-.factory('todoService', function($http){
+.factory('todoService', function($http, $filter){
 	var service = {};
 	
 	service.index = function(){
@@ -23,6 +23,13 @@ angular.module('appModule')
 	
 	
 	service.update = function(todo){
+		
+		if(todo.completed){
+			todo.completeDate = $filter('date')(Date.now(), 'MM/dd/yyyy')
+		}
+		if(!todo.completed){
+			todo.completeDate = "";
+		}
 		return $http({
 			method : "PUT",
 			url : "rest/user/1/todos/" + todo.id ,

@@ -1,0 +1,56 @@
+body{
+	margin-left: 200px;
+}
+h1{
+  color: blue;
+  margin-left:30px;
+}
+table{
+  border: 2px solid;
+  margin-top: 50px;
+}
+td{
+  border: solid 1px;
+}
+thead{
+	background-color: black;
+	color : white;
+}
+.detail{
+	width: 35%;
+	border: solid 2px;
+	text-align: center;
+	  margin-top: 50px;
+}
+.add{
+	margin-left:30px;
+}
+.task{
+	cursor : pointer;
+}
+.numIncomplete{
+	background : green;
+	color : white;
+	border-radius : 5px;
+	padding : 10px;
+}
+.lessFive{
+	color : black;
+	background : lime;
+}
+.moreFive{
+	color : black;
+	background : yellow;
+}
+.moreTen{
+	color : black;
+	background : red;
+}
+.complete{
+	text-decoration : line-through;
+}
+
+
+
+
+
